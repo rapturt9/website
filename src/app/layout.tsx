@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Personal Website - Research & Portfolio",
+  title: "Ram Potham - AI Safety Researcher & Entrepreneur",
   description:
     "A sleek personal website showcasing research outputs, publications, and professional experience.",
   keywords: ["research", "portfolio", "academic", "publications", "resume"],
