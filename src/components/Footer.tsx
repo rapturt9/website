@@ -7,8 +7,8 @@ export function Footer() {
           <div>
             <h3 className="text-2xl font-bold mb-4">Ram Potham</h3>
             <p className="text-gray-400 leading-relaxed">
-              AI Safety Researcher & Entrepreneur focused on reducing AI
-              existential risk
+              AI Safety Researcher focused on reducing loss of control risk from
+              AI
             </p>
           </div>
 
