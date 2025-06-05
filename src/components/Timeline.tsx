@@ -9,6 +9,7 @@ import {
   ChevronUp,
   ExternalLink,
   Tag,
+  Award,
 } from "lucide-react";
 
 interface Publication {
@@ -20,6 +21,10 @@ interface Publication {
   url: string;
   tags: string[];
   featured: boolean;
+  conference?: {
+    name: string;
+    presentationType?: "Oral" | "Poster" | "Workshop";
+  };
 }
 
 const publications: Publication[] = [
@@ -44,7 +49,7 @@ const publications: Publication[] = [
     platform: "arXiv",
     url: "https://arXiv.org/abs/2506.03053",
     tags: ["Multi-Agent Systems", "Emergent Behavior", "Safety"],
-    featured: true,
+    featured: false,
   },
   {
     title: "Evaluating LLM Agent Adherence to Hierarchical Safety Principles",
@@ -56,6 +61,10 @@ const publications: Publication[] = [
     url: "https://arXiv.org/abs/2506.02357",
     tags: ["Safety", "Instruction Following", "Benchmark"],
     featured: true,
+    conference: {
+      name: "ICML 2025 Technical AI Governance workshop",
+      presentationType: "Oral",
+    },
   },
   {
     title: "Why I Shifted from Building AI Agents to Making AI Safer",
@@ -77,7 +86,7 @@ const publications: Publication[] = [
     platform: "LessWrong",
     url: "https://www.lesswrong.com/posts/3PBvKHB2EmCujet3j/ai-control-methods-literature-review",
     tags: ["Safety", "AI Control", "Literature Review"],
-    featured: true,
+    featured: false,
   },
 ];
 
@@ -259,6 +268,14 @@ export function Timeline() {
                   className="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition-shadow duration-300"
                 >
                   <div className="flex flex-wrap gap-2 mb-2">
+                    {publication.conference && (
+                      <span className="flex items-center text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">
+                        <Award size={10} className="mr-1" />
+                        {publication.conference.name}
+                        {publication.conference.presentationType &&
+                          ` - ${publication.conference.presentationType}`}
+                      </span>
+                    )}
                     {publication.featured && (
                       <span className="flex items-center text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">
                         <Star size={10} className="mr-1" />
@@ -354,6 +371,14 @@ export function Timeline() {
                         index % 2 === 0 ? "md:justify-end" : "md:justify-start"
                       }`}
                     >
+                      {publication.conference && (
+                        <span className="flex items-center text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">
+                          <Award size={10} className="mr-1" />
+                          {publication.conference.name}
+                          {publication.conference.presentationType &&
+                            ` - ${publication.conference.presentationType}`}
+                        </span>
+                      )}
                       {publication.featured && (
                         <span className="flex items-center text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">
                           <Star size={10} className="mr-1" />
