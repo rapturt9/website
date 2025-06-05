@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Star, Calendar, ExternalLink, Award } from "lucide-react";
 
 interface Publication {
@@ -82,17 +83,16 @@ const publications: Publication[] = [
 ];
 
 export function Timeline() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   const [filter, setFilter] = useState<string>("featured");
   const [filteredPublications, setFilteredPublications] = useState<
     Publication[]
-  >(
-    publications
-      .filter((pub) => pub.featured)
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  );
+  >([]);
 
-  const handleFilter = (filterType: string) => {
-    setFilter(filterType);
+  // Function to filter publications based on filter type
+  const getFilteredPublications = (filterType: string) => {
     let filtered: Publication[] = [];
 
     if (filterType === "featured") {
@@ -106,10 +106,62 @@ export function Timeline() {
     }
 
     // Sort by date (newest first)
-    const sorted = filtered.sort(
+    return filtered.sort(
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
-    setFilteredPublications(sorted);
+  };
+
+  // Initialize filter from URL on component mount
+  useEffect(() => {
+    const urlFilter = searchParams.get("filter");
+    const validFilters = ["featured", "papers", "posts"];
+    const initialFilter =
+      urlFilter && validFilters.includes(urlFilter) ? urlFilter : "featured";
+
+    setFilter(initialFilter);
+    setFilteredPublications(getFilteredPublications(initialFilter));
+
+    // Handle instant scrolling to section if there's a hash in the URL
+    if (typeof window !== "undefined" && window.location.hash === "#research") {
+      // Use requestAnimationFrame to ensure DOM is ready
+      requestAnimationFrame(() => {
+        const element = document.getElementById("research");
+        if (element) {
+          element.scrollIntoView({ behavior: "instant" });
+        }
+      });
+    }
+  }, [searchParams]);
+
+  // Handle hash changes for navigation within the page
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === "#research") {
+        const element = document.getElementById("research");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
+  const handleFilter = (filterType: string) => {
+    setFilter(filterType);
+    setFilteredPublications(getFilteredPublications(filterType));
+
+    // Update URL with new filter parameter while preserving hash
+    const url = new URL(window.location.href);
+    url.searchParams.set("filter", filterType);
+
+    // Preserve the hash if it exists
+    const fullUrl = url.pathname + url.search + (window.location.hash || "");
+    router.push(fullUrl, { scroll: false });
   };
 
   const getPlatformColor = (platform: string) => {
