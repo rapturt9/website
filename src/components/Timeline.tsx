@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Star, Calendar, ExternalLink, Award } from "lucide-react";
 
@@ -82,7 +82,8 @@ const publications: Publication[] = [
   },
 ];
 
-export function Timeline() {
+// Timeline component that uses search params
+function TimelineWithParams() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -294,5 +295,55 @@ export function Timeline() {
         </div>
       </div>
     </section>
+  );
+}
+
+// Fallback component for loading state
+function TimelineFallback() {
+  return (
+    <section id="research" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-left md:text-center mb-8">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            Research Outputs
+          </h2>
+        </div>
+        <div className="flex flex-wrap gap-4 mb-8 items-start md:items-center md:justify-center">
+          <div className="px-6 py-2 rounded-full bg-blue-600 text-white text-sm font-medium">
+            <Star size={16} className="inline mr-1" />
+            Featured
+          </div>
+          <div className="px-6 py-2 rounded-full bg-white text-gray-700 text-sm font-medium">
+            Papers
+          </div>
+          <div className="px-6 py-2 rounded-full bg-white text-gray-700 text-sm font-medium">
+            Posts
+          </div>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {[1, 2, 3].map((i) => (
+            <div
+              key={i}
+              className="bg-white rounded-lg shadow-lg p-4 animate-pulse"
+            >
+              <div className="h-4 bg-gray-200 rounded mb-2"></div>
+              <div className="h-6 bg-gray-200 rounded mb-2"></div>
+              <div className="h-16 bg-gray-200 rounded mb-3"></div>
+              <div className="h-4 bg-gray-200 rounded mb-3"></div>
+              <div className="h-4 bg-gray-200 rounded w-24"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Main export with Suspense boundary
+export function Timeline() {
+  return (
+    <Suspense fallback={<TimelineFallback />}>
+      <TimelineWithParams />
+    </Suspense>
   );
 }
