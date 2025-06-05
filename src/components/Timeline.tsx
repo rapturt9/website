@@ -61,7 +61,7 @@ const publications: Publication[] = [
     title: "Why I Shifted from Building AI Agents to Making AI Safer",
     description:
       "Leaving behind the startup grind at Sitewiz to confront the existential risks of AI and help steer it toward a future that benefits humanity.",
-    date: "2025-06-04",
+    date: "2025-06-01",
     type: "post",
     platform: "Substack",
     url: "https://substack.com/home/post/p-165220082",
@@ -158,36 +158,56 @@ export function Timeline() {
   return (
     <section id="research" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-8">
+        <div className="text-left md:text-center mb-8">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Research Outputs
           </h2>
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
-          {["featured", "all", "paper", "post", "article"].map((filterType) => (
-            <button
-              key={filterType}
-              onClick={() => handleFilter(filterType)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
-                filter === filterType
-                  ? "bg-blue-600 text-white"
-                  : "bg-white text-gray-700 hover:bg-gray-100"
-              }`}
-            >
-              {filterType === "featured" && (
-                <Star size={16} className="inline mr-1" />
-              )}
-              {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-              {filterType === "all" && " Publications"}
-              {filterType === "featured" && " Highlights"}
-            </button>
-          ))}
+        <div className="flex flex-col gap-4 mb-8 items-start md:items-center">
+          {/* First row: Featured and All */}
+          <div className="flex flex-wrap gap-4">
+            {["featured", "all"].map((filterType) => (
+              <button
+                key={filterType}
+                onClick={() => handleFilter(filterType)}
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
+                  filter === filterType
+                    ? "bg-blue-600 text-white"
+                    : "bg-white text-gray-700 hover:bg-gray-100"
+                }`}
+              >
+                {filterType === "featured" && (
+                  <Star size={16} className="inline mr-1" />
+                )}
+                {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                {filterType === "all" && " Publications"}
+                {filterType === "featured" && " Highlights"}
+              </button>
+            ))}
+          </div>
+
+          {/* Second row: Paper, Post, Article */}
+          <div className="flex flex-wrap gap-4">
+            {["paper", "post", "article"].map((filterType) => (
+              <button
+                key={filterType}
+                onClick={() => handleFilter(filterType)}
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
+                  filter === filterType
+                    ? "bg-blue-600 text-white"
+                    : "bg-white text-gray-700 hover:bg-gray-100"
+                }`}
+              >
+                {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Sort and View Controls */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-start md:justify-center gap-4 mb-12">
           <div className="flex gap-2">
             <button
               onClick={() => handleSort("date")}
@@ -309,7 +329,7 @@ export function Timeline() {
             filteredPublications.map((publication, index) => (
               <div
                 key={publication.title}
-                className={`relative flex items-center mb-12 ${
+                className={`relative flex items-start mb-12 ${
                   index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
@@ -368,7 +388,7 @@ export function Timeline() {
                     </p>
 
                     <div
-                      className={`flex flex-wrap gap-2 mb-4 ${
+                      className={`flex flex-wrap gap-2 mb-4 justify-start ${
                         index % 2 === 0 ? "md:justify-end" : "md:justify-start"
                       }`}
                     >

@@ -7,11 +7,11 @@ export function Contact() {
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-left md:text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Get In Touch
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-2xl md:mx-auto">
             Interested in AI safety research, collaboration opportunities, or
             have questions? Let&apos;s connect.
           </p>
@@ -21,10 +21,10 @@ export function Contact() {
           {/* Contact Info */}
           <div className="lg:col-span-1 space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              <h3 className="hidden md:block text-2xl font-bold text-gray-900 mb-6">
                 Let&apos;s Connect
               </h3>
-              <p className="text-gray-600 text-lg leading-relaxed mb-8">
+              <p className="text-gray-600 mt-[-40px] md:mt-[5px] text-lg leading-relaxed mb-8">
                 Always open to discussing AI safety research, autonomous agents,
                 and collaborative projects in alignment and robustness.
               </p>

@@ -85,10 +85,6 @@ export function Footer() {
           <p className="text-gray-400">
             © {new Date().getFullYear()} Ram Potham. All rights reserved.
           </p>
-          <p className="text-gray-500 text-sm mt-2">
-            Built with Next.js and Tailwind CSS. Resume auto-updated from Google
-            Docs.
-          </p>
         </div>
       </div>
     </footer>
