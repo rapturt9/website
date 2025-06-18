@@ -42,6 +42,10 @@ const publications: Publication[] = [
     url: "https://arXiv.org/abs/2506.03053",
     tags: ["Multi-Agent Systems", "Emergent Behavior", "Safety"],
     featured: false,
+    conference: {
+      name: "ICML 2025 Multi-Agent Systems workshop",
+      presentationType: "Oral",
+    },
   },
   {
     title: "Evaluating LLM Agent Adherence to Hierarchical Safety Principles",
@@ -55,7 +59,7 @@ const publications: Publication[] = [
     featured: true,
     conference: {
       name: "ICML 2025 Technical AI Governance workshop",
-      presentationType: "Oral",
+      presentationType: "Poster",
     },
   },
   {
