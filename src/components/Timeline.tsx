@@ -44,7 +44,7 @@ const publications: Publication[] = [
     featured: false,
     conference: {
       name: "ICML 2025 Multi-Agent Systems workshop",
-      presentationType: "Oral",
+      presentationType: "Poster",
     },
   },
   {
@@ -59,7 +59,7 @@ const publications: Publication[] = [
     featured: true,
     conference: {
       name: "ICML 2025 Technical AI Governance workshop",
-      presentationType: "Poster",
+      presentationType: "Oral",
     },
   },
   {
