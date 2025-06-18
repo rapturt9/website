@@ -8,8 +8,14 @@ interface Publication {
   title: string;
   description: string;
   date: string;
-  type: "paper" | "post" | "article";
-  platform: "arXiv" | "LessWrong" | "Substack" | "Other";
+  type: "paper" | "post" | "article" | "project";
+  platform:
+    | "arXiv"
+    | "LessWrong"
+    | "Substack"
+    | "Other"
+    | "Forecast Labs"
+    | "AI Safety Global Society";
   url: string;
   tags: string[];
   featured: boolean;
@@ -17,9 +23,37 @@ interface Publication {
     name: string;
     presentationType?: "Oral" | "Poster" | "Workshop";
   };
+  role?: string;
+  status?: "Active" | "Completed" | "Ongoing";
 }
 
 const publications: Publication[] = [
+  {
+    title: "Forecast Labs",
+    description:
+      "AI Forecasting bot that rivals human superforecasters, used for better decision-making for reducing AI Risk. Building advanced forecasting systems to improve strategic decision-making in AI safety.",
+    date: "2025-06-18",
+    type: "project",
+    platform: "Forecast Labs",
+    url: "https://www.forecastlabs.org/",
+    tags: ["AI Forecasting", "Decision Making", "AI Risk"],
+    featured: true,
+    role: "Founder",
+    status: "Active",
+  },
+  {
+    title: "AI Safety Global Society - Arena Curriculum Mentor",
+    description:
+      "Teaching the Arena curriculum to help train the next generation of AI safety researchers and practitioners through hands-on technical education.",
+    date: "2025-04-015",
+    type: "project",
+    platform: "AI Safety Global Society",
+    url: "https://www.aisafety.group/about/team",
+    tags: ["AI Safety", "Education", "Mentorship", "Arena Curriculum"],
+    featured: true,
+    role: "Mentor",
+    status: "Ongoing",
+  },
   {
     title:
       "Corrigibility as a Singular Target: A Vision for Inherently Reliable Foundation Models",
@@ -108,6 +142,8 @@ function TimelineWithParams() {
       filtered = publications.filter(
         (pub) => pub.type === "post" || pub.type === "article"
       );
+    } else if (filterType === "projects") {
+      filtered = publications.filter((pub) => pub.type === "project");
     }
 
     // Sort by date (newest first)
@@ -119,7 +155,7 @@ function TimelineWithParams() {
   // Initialize filter from URL on component mount
   useEffect(() => {
     const urlFilter = searchParams.get("filter");
-    const validFilters = ["featured", "papers", "posts"];
+    const validFilters = ["featured", "papers", "posts", "projects"];
     const initialFilter =
       urlFilter && validFilters.includes(urlFilter) ? urlFilter : "featured";
 
@@ -177,6 +213,10 @@ function TimelineWithParams() {
         return "bg-green-100 text-green-800";
       case "Substack":
         return "bg-orange-100 text-orange-800";
+      case "Forecast Labs":
+        return "bg-purple-100 text-purple-800";
+      case "AI Safety Global Society":
+        return "bg-indigo-100 text-indigo-800";
       default:
         return "bg-gray-100 text-gray-800";
     }
@@ -197,6 +237,7 @@ function TimelineWithParams() {
             { key: "featured", label: "Featured", icon: true },
             { key: "papers", label: "Papers", icon: false },
             { key: "posts", label: "Posts", icon: false },
+            { key: "projects", label: "Projects", icon: false },
           ].map((filterType) => (
             <button
               key={filterType.key}
@@ -229,6 +270,24 @@ function TimelineWithParams() {
                       {publication.conference.name}
                       {publication.conference.presentationType &&
                         ` - ${publication.conference.presentationType}`}
+                    </span>
+                  )}
+                  {publication.role && (
+                    <span className="flex items-center text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full">
+                      {publication.role}
+                    </span>
+                  )}
+                  {publication.status && (
+                    <span
+                      className={`flex items-center text-xs px-2 py-1 rounded-full ${
+                        publication.status === "Active"
+                          ? "bg-emerald-100 text-emerald-800"
+                          : publication.status === "Ongoing"
+                          ? "bg-blue-100 text-blue-800"
+                          : "bg-gray-100 text-gray-800"
+                      }`}
+                    >
+                      {publication.status}
                     </span>
                   )}
                   {publication.featured && (
@@ -322,6 +381,9 @@ function TimelineFallback() {
           </div>
           <div className="px-6 py-2 rounded-full bg-white text-gray-700 text-sm font-medium">
             Posts
+          </div>
+          <div className="px-6 py-2 rounded-full bg-white text-gray-700 text-sm font-medium">
+            Projects
           </div>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
