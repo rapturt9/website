@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { list } from "@vercel/blob";
 
 // GET endpoint to serve the resume PDF as a proxy
-export async function GET() {
+export async function GET(request: Request) {
   try {
     // Check if blob token is available
     const blobToken = process.env.BLOB_READ_WRITE_TOKEN;
@@ -38,6 +38,22 @@ export async function GET() {
       );
     }
 
+    // Generate ETag based on upload timestamp for cache validation
+    const uploadTime = new Date(resumeBlob.uploadedAt).getTime();
+    const etag = `"${uploadTime}"`;
+
+    // Check if client has the latest version using If-None-Match header
+    const ifNoneMatch = request.headers.get("if-none-match");
+    if (ifNoneMatch === etag) {
+      return new NextResponse(null, {
+        status: 304,
+        headers: {
+          ETag: etag,
+          "Cache-Control": "public, max-age=300, must-revalidate",
+        },
+      });
+    }
+
     // Fetch the PDF from the blob URL
     const pdfResponse = await fetch(resumeBlob.url);
 
@@ -52,12 +68,14 @@ export async function GET() {
 
     const pdfBuffer = await pdfResponse.arrayBuffer();
 
-    // Return the PDF with appropriate headers
+    // Return the PDF with cache headers that invalidate when resume is updated
     return new NextResponse(pdfBuffer, {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition": "inline; filename=resume.pdf",
-        "Cache-Control": "public, max-age=3600", // Cache for 1 hour
+        "Cache-Control": "public, max-age=300, must-revalidate", // Cache for 5 minutes but revalidate
+        ETag: etag,
+        "Last-Modified": new Date(resumeBlob.uploadedAt).toUTCString(),
       },
     });
   } catch (error) {
