@@ -50,6 +50,7 @@ async function updateResume(isManual: boolean = false) {
       access: "public",
       contentType: "application/pdf",
       token: blobToken, // Explicitly pass the token
+      allowOverwrite: true,
     });
 
     console.log("✅ Resume updated successfully in Vercel Blob!");
