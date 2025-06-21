@@ -6,19 +6,54 @@ import { Download, FileText, RefreshCw } from "lucide-react";
 export function Resume() {
   const [lastUpdated, setLastUpdated] = useState<string>("");
   const [isUpdating, setIsUpdating] = useState(false);
+  const resumeUrl = "/resume"; // Use proxy endpoint
 
   useEffect(() => {
-    // Simulate getting last updated time
-    const now = new Date();
-    setLastUpdated(
-      now.toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-      })
-    );
+    // Fetch the last updated time from blob storage
+    const fetchResumeInfo = async () => {
+      try {
+        const response = await fetch("/api/resume-url");
+        if (response.ok) {
+          const data = await response.json();
+          setLastUpdated(
+            new Date(data.lastUpdated).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            })
+          );
+        } else {
+          // Use current time as fallback
+          const now = new Date();
+          setLastUpdated(
+            now.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            })
+          );
+        }
+      } catch (error) {
+        console.error("Failed to fetch resume info:", error);
+        // Use current time as fallback
+        const now = new Date();
+        setLastUpdated(
+          now.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        );
+      }
+    };
+
+    fetchResumeInfo();
   }, []);
 
   const handleUpdateResume = async () => {
@@ -28,9 +63,11 @@ export function Resume() {
         method: "POST",
       });
       if (response.ok) {
-        const now = new Date();
+        const data = await response.json();
+
+        // Update the timestamp
         setLastUpdated(
-          now.toLocaleDateString("en-US", {
+          new Date(data.timestamp).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",
             day: "numeric",
@@ -72,7 +109,7 @@ export function Resume() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <a
-              href="/resume.pdf"
+              href={resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-medium transition-colors duration-200 shadow-lg hover:shadow-xl flex items-center"
@@ -81,8 +118,8 @@ export function Resume() {
               View Resume
             </a>
             <a
-              href="/resume.pdf"
-              download
+              href={resumeUrl}
+              download="resume.pdf"
               className="border-2 border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-600 px-8 py-3 rounded-lg text-lg font-medium transition-colors duration-200 flex items-center"
             >
               <Download className="mr-2" size={20} />

@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import fs from "fs/promises";
-import path from "path";
+import { put } from "@vercel/blob";
 
 const GOOGLE_DOC_ID = "1c2gXIFkuPz5HlN5NWuTrSx8-jCarH17e7IpN_EcGyqo";
 const GOOGLE_DOC_URL = `https://docs.google.com/document/d/${GOOGLE_DOC_ID}/export?format=pdf`;
@@ -12,6 +11,16 @@ async function updateResume(isManual: boolean = false) {
       `${logPrefix} resume update started at:`,
       new Date().toISOString()
     );
+
+    // Check if blob token is available
+    const blobToken = process.env.BLOB_READ_WRITE_TOKEN;
+    console.log("🔑 Blob token status:", blobToken ? "Available" : "Missing");
+
+    if (!blobToken) {
+      throw new Error(
+        "BLOB_READ_WRITE_TOKEN environment variable is not set. Please configure it in your Vercel dashboard."
+      );
+    }
 
     console.log("📄 Fetching latest resume from Google Doc...");
 
@@ -30,14 +39,23 @@ async function updateResume(isManual: boolean = false) {
     }
 
     const pdfBuffer = await response.arrayBuffer();
+    console.log(`📊 PDF size: ${pdfBuffer.byteLength} bytes`);
 
-    // Write the PDF to the public directory
-    const publicDir = path.join(process.cwd(), "public");
-    const resumePath = path.join(publicDir, "resume.pdf");
+    console.log("☁️ Uploading to Vercel Blob...");
 
-    await fs.writeFile(resumePath, Buffer.from(pdfBuffer));
+    console.log("Blob token used for upload:", blobToken);
 
-    console.log("✅ Resume updated successfully!");
+    // Upload the PDF to Vercel Blob storage with explicit token
+    const blob = await put("resume.pdf", Buffer.from(pdfBuffer), {
+      access: "public",
+      contentType: "application/pdf",
+      token: blobToken, // Explicitly pass the token
+    });
+
+    console.log("✅ Resume updated successfully in Vercel Blob!");
+    console.log("🔗 Blob URL:", blob.url);
+
+    console.log("✅ Resume updated successfully in Vercel Blob!");
 
     return {
       message: `Resume updated successfully via ${
@@ -47,6 +65,7 @@ async function updateResume(isManual: boolean = false) {
       docId: GOOGLE_DOC_ID,
       type: isManual ? "manual" : "automated",
       size: pdfBuffer.byteLength,
+      blobUrl: blob.url,
     };
   } catch (error) {
     console.error("❌ Error updating resume:", error);
@@ -66,6 +85,24 @@ export async function GET() {
         details: error instanceof Error ? error.message : "Unknown error",
         timestamp: new Date().toISOString(),
         type: "automated",
+      },
+      { status: 500 }
+    );
+  }
+}
+
+// Handle manual update requests (POST)
+export async function POST() {
+  try {
+    const result = await updateResume(true);
+    return NextResponse.json(result);
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error: "Failed to update resume manually",
+        details: error instanceof Error ? error.message : "Unknown error",
+        timestamp: new Date().toISOString(),
+        type: "manual",
       },
       { status: 500 }
     );
