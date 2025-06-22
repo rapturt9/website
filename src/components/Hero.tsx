@@ -10,17 +10,19 @@ export function Hero() {
             Hey, I&apos;m Ram
           </h1>
           <p className="text-2xl sm:text-3xl lg:text-4xl text-gray-600 mb-10 max-w-3xl sm:mx-auto leading-relaxed">
-            AI Safety Researcher working towards a{" "}
-            <span className="text-blue-600 font-semibold">
-              beautiful future
+            AI Safety Researcher focused on mitigating{" "}
+            <span className="text-red-600 font-semibold">
+              existential risks
             </span>{" "}
-            for humanity
+            from advanced AI
           </p>
           <p className="text-lg sm:text-xl text-gray-500 max-w-4xl sm:mx-auto leading-relaxed">
-            Carnegie Mellon AI graduate focused on pursuing research agendas
-            that reduce loss of control and existential risk. Previously built a
-            VC-backed startup building autonomous agents but pivoted to AI
-            safety after realizing the risks of AI systems.
+            My work targets the core technical challenges of AI alignment to
+            prevent loss-of-control scenarios. This focus is shaped by my
+            experience as the founder of a VC-backed AI startup, which gave me a
+            firsthand understanding of the risks and the urgent need for safety.
+            I have a B.S. in Artificial Intelligence from Carnegie Mellon
+            University.
           </p>
         </div>
 

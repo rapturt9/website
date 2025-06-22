@@ -12,12 +12,13 @@ interface Publication {
   platform:
     | "arXiv"
     | "LessWrong"
+    | "EA Forum"
+    | "Alignment Forum"
     | "Substack"
     | "Other"
     | "Forecast Labs"
     | "AI Safety Global Society";
   url: string;
-  tags: string[];
   featured: boolean;
   conference?: {
     name: string;
@@ -36,7 +37,6 @@ const publications: Publication[] = [
     type: "project",
     platform: "Forecast Labs",
     url: "https://www.forecastlabs.org/",
-    tags: ["AI Forecasting", "Decision Making", "AI Risk"],
     featured: true,
     role: "Founder",
     status: "Active",
@@ -49,7 +49,6 @@ const publications: Publication[] = [
     type: "project",
     platform: "AI Safety Global Society",
     url: "https://www.aisafety.group/about/team",
-    tags: ["AI Safety", "Education", "Mentorship", "Arena Curriculum"],
     featured: true,
     role: "Mentor",
     status: "Ongoing",
@@ -63,7 +62,6 @@ const publications: Publication[] = [
     type: "paper",
     platform: "arXiv",
     url: "https://arXiv.org/abs/2506.03056",
-    tags: ["Safety", "Corrigibility"],
     featured: true,
   },
   {
@@ -74,7 +72,6 @@ const publications: Publication[] = [
     type: "paper",
     platform: "arXiv",
     url: "https://arXiv.org/abs/2506.03053",
-    tags: ["Multi-Agent Systems", "Emergent Behavior", "Safety"],
     featured: false,
     conference: {
       name: "ICML 2025 Multi-Agent Systems workshop",
@@ -89,7 +86,6 @@ const publications: Publication[] = [
     type: "paper",
     platform: "arXiv",
     url: "https://arXiv.org/abs/2506.02357",
-    tags: ["Safety", "Instruction Following", "Benchmark"],
     featured: true,
     conference: {
       name: "ICML 2025 Technical AI Governance workshop",
@@ -104,7 +100,6 @@ const publications: Publication[] = [
     type: "post",
     platform: "Substack",
     url: "https://substack.com/home/post/p-165220082",
-    tags: ["Entrepreneurship", "Retrospective"],
     featured: true,
   },
   {
@@ -115,7 +110,16 @@ const publications: Publication[] = [
     type: "article",
     platform: "LessWrong",
     url: "https://www.lesswrong.com/posts/3PBvKHB2EmCujet3j/ai-control-methods-literature-review",
-    tags: ["Safety", "AI Control", "Literature Review"],
+    featured: false,
+  },
+  {
+    title: "AI-Powered Outrage Monitor for Animal Advocacy",
+    description:
+      "Case study of an AI-powered social listening tool built during the Code4Compassion hackathon. It monitors Twitter for content about factory farming, scores it for 'outrage', and sends prioritized alerts.",
+    date: "2025-06-22",
+    type: "article",
+    platform: "EA Forum",
+    url: "https://forum.effectivealtruism.org/posts/8AniqLjuJkFN33KYK/case-study-an-ai-powered-outrage-monitor-for-animal-advocacy",
     featured: false,
   },
 ];
@@ -325,22 +329,6 @@ function TimelineWithParams() {
                   <span className="capitalize bg-gray-100 text-gray-600 px-2 py-1 rounded">
                     {publication.type}
                   </span>
-                </div>
-
-                <div className="flex flex-wrap gap-1 mb-3">
-                  {publication.tags.slice(0, 3).map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  {publication.tags.length > 3 && (
-                    <span className="text-xs text-gray-400">
-                      +{publication.tags.length - 3} more
-                    </span>
-                  )}
                 </div>
 
                 <a
