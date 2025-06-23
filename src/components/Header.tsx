@@ -36,7 +36,7 @@ export function Header() {
 
             {/* Resume Download Button */}
             <a
-              href="/resume"
+              href="/api/resume"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200"
@@ -74,7 +74,7 @@ export function Header() {
 
               {/* Mobile Resume Button */}
               <a
-                href="/resume"
+                href="/api/resume"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-3 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200 mx-3 mt-2"
