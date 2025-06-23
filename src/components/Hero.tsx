@@ -21,8 +21,9 @@ export function Hero() {
             prevent loss-of-control scenarios. This focus is shaped by my
             experience as the founder of a VC-backed AI startup, which gave me a
             firsthand understanding of the risks and the urgent need for safety.
-            I have a B.S. in Artificial Intelligence from Carnegie Mellon
-            University.
+            My technical background combines a B.S. in Artificial Intelligence
+            from Carnegie Mellon with my current work as a CBAI Fellow at
+            MIT/Harvard.
           </p>
         </div>
 
