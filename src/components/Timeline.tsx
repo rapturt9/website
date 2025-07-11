@@ -49,7 +49,7 @@ const publications: Publication[] = [
     type: "project",
     platform: "AI Safety Global Society",
     url: "https://www.aisafety.group/about/team",
-    featured: true,
+    featured: false,
     role: "Mentor",
     status: "Ongoing",
   },
@@ -62,7 +62,7 @@ const publications: Publication[] = [
     type: "paper",
     platform: "arXiv",
     url: "https://arXiv.org/abs/2506.03056",
-    featured: true,
+    featured: false,
   },
   {
     title: "MAEBE: Multi-Agent Emergent Behavior Framework",
@@ -85,7 +85,7 @@ const publications: Publication[] = [
     date: "2025-06-03",
     type: "paper",
     platform: "arXiv",
-    url: "https://arXiv.org/abs/2506.02357",
+    url: "https://rapturt9.github.io/SafetyAdherenceBenchmark/",
     featured: true,
     conference: {
       name: "ICML 2025 Technical AI Governance workshop",
