@@ -20,10 +20,10 @@ interface Publication {
     | "AI Safety Global Society";
   url: string;
   featured: boolean;
-  conference?: {
+  conference?: Array<{
     name: string;
     presentationType?: "Oral" | "Poster" | "Workshop";
-  };
+  }>;
   role?: string;
   status?: "Active" | "Completed" | "Ongoing";
 }
@@ -37,7 +37,7 @@ const publications: Publication[] = [
     type: "project",
     platform: "Forecast Labs",
     url: "https://www.forecastlabs.org/",
-    featured: true,
+    featured: false,
     role: "Founder",
     status: "Active",
   },
@@ -51,7 +51,6 @@ const publications: Publication[] = [
     url: "https://www.aisafety.group/about/team",
     featured: false,
     role: "Mentor",
-    status: "Ongoing",
   },
   {
     title:
@@ -65,6 +64,28 @@ const publications: Publication[] = [
     featured: false,
   },
   {
+    title:
+      "A Safety Case for a Deployed LLM: Corrigibility as a Singular Target",
+    description:
+      "Safety case for deploying a highly capable LLM for real-world action under the guidance of a trusted principal. The system is trained according to the Corrigibility-as-Singular-Target (CAST) strategy.",
+    date: "2025-06-24",
+    type: "paper",
+    platform: "arXiv",
+    url: "https://openreview.net/pdf?id=mhEnJa9pNk",
+    featured: false,
+  },
+  {
+    title:
+      "Model-Based Soft Maximization of Suitable Metrics of Long-Term Human Power",
+    description:
+      "Promoting both safety and wellbeing by forcing AI agents explicitly to empower humans and to manage the power balance between humans and AI agents in a desirable way.",
+    date: "2025-07-24",
+    type: "paper",
+    platform: "arXiv",
+    url: "https://arxiv.org/abs/2508.00159",
+    featured: false,
+  },
+  {
     title: "MAEBE: Multi-Agent Emergent Behavior Framework",
     description:
       "Developed a framework for analyzing emergent behaviors in multi-agent systems, focusing on safety and alignment in complex AI environments.",
@@ -72,11 +93,17 @@ const publications: Publication[] = [
     type: "paper",
     platform: "arXiv",
     url: "https://arXiv.org/abs/2506.03053",
-    featured: false,
-    conference: {
-      name: "ICML 2025 Multi-Agent Systems workshop",
-      presentationType: "Poster",
-    },
+    featured: true,
+    conference: [
+      {
+        name: "ICML 2025, Multi-Agent Systems workshop",
+        presentationType: "Poster",
+      },
+      {
+        name: "HICSS 2026, Trustworthy AI Track",
+        presentationType: "Poster",
+      },
+    ],
   },
   {
     title: "Evaluating LLM Agent Adherence to Hierarchical Safety Principles",
@@ -87,10 +114,12 @@ const publications: Publication[] = [
     platform: "arXiv",
     url: "https://rapturt9.github.io/SafetyAdherenceBenchmark/",
     featured: true,
-    conference: {
-      name: "ICML 2025 Technical AI Governance workshop",
-      presentationType: "Oral",
-    },
+    conference: [
+      {
+        name: "ICML 2025, Technical AI Governance workshop",
+        presentationType: "Oral",
+      },
+    ],
   },
   {
     title: "Why I Shifted from Building AI Agents to Making AI Safer",
@@ -134,6 +163,19 @@ function TimelineWithParams() {
     Publication[]
   >([]);
 
+  // Function to count tags for a publication
+  const countTags = (pub: Publication) => {
+    let count = 0;
+    if (pub.conference && pub.conference.length > 0)
+      count += pub.conference.length;
+    if (pub.role) count++;
+    if (pub.status) count++;
+    if (pub.featured) count++;
+    // Platform tag is not shown for arXiv, so only count if not arXiv
+    if (pub.platform && pub.platform !== "arXiv") count++;
+    return count;
+  };
+
   // Function to filter publications based on filter type
   const getFilteredPublications = (filterType: string) => {
     let filtered: Publication[] = [];
@@ -150,10 +192,12 @@ function TimelineWithParams() {
       filtered = publications.filter((pub) => pub.type === "project");
     }
 
-    // Sort by date (newest first)
-    return filtered.sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-    );
+    // Sort by number of tags (descending), then by date (newest first)
+    return filtered.sort((a, b) => {
+      const tagDiff = countTags(b) - countTags(a);
+      if (tagDiff !== 0) return tagDiff;
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
   };
 
   // Initialize filter from URL on component mount
@@ -268,14 +312,17 @@ function TimelineWithParams() {
                 className="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition-shadow duration-300"
               >
                 <div className="flex flex-wrap gap-2 mb-2">
-                  {publication.conference && (
-                    <span className="flex items-center text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">
-                      <Award size={10} className="mr-1" />
-                      {publication.conference.name}
-                      {publication.conference.presentationType &&
-                        ` - ${publication.conference.presentationType}`}
-                    </span>
-                  )}
+                  {publication.conference &&
+                    publication.conference.map((conf, idx) => (
+                      <span
+                        key={conf.name + idx}
+                        className="flex items-center text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full"
+                      >
+                        <Award size={10} className="mr-1" />
+                        {conf.name}
+                        {conf.presentationType && ` - ${conf.presentationType}`}
+                      </span>
+                    ))}
                   {publication.role && (
                     <span className="flex items-center text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full">
                       {publication.role}
@@ -300,13 +347,15 @@ function TimelineWithParams() {
                       Featured
                     </span>
                   )}
-                  <span
-                    className={`px-2 py-1 rounded-full text-xs font-medium ${getPlatformColor(
-                      publication.platform
-                    )}`}
-                  >
-                    {publication.platform}
-                  </span>
+                  {publication.platform !== "arXiv" && (
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs font-medium ${getPlatformColor(
+                        publication.platform
+                      )}`}
+                    >
+                      {publication.platform}
+                    </span>
+                  )}
                 </div>
 
                 <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
