@@ -6,13 +6,13 @@ import { Download, FileText, RefreshCw } from "lucide-react";
 export function Resume() {
   const [lastUpdated, setLastUpdated] = useState<string>("");
   const [isUpdating, setIsUpdating] = useState(false);
-  const resumeUrl = "/api/resume"; // Use proxy endpoint
+  const resumeUrl = "/resume"; // Use proxy endpoint
 
   useEffect(() => {
     // Fetch the last updated time from blob storage
     const fetchResumeInfo = async () => {
       try {
-        const response = await fetch("/api/resume-url");
+        const response = await fetch("/resume-url");
         if (response.ok) {
           const data = await response.json();
           setLastUpdated(
