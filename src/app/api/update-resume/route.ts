@@ -46,7 +46,7 @@ async function updateResume(isManual: boolean = false) {
     console.log("Blob token used for upload:", blobToken);
 
     // Upload the PDF to Vercel Blob storage with explicit token
-    const blob = await put("resume.pdf", Buffer.from(pdfBuffer), {
+    const blob = await put("resume", Buffer.from(pdfBuffer), {
       access: "public",
       contentType: "application/pdf",
       token: blobToken, // Explicitly pass the token

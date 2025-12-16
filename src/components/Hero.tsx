@@ -35,7 +35,7 @@ export function Hero() {
             View Research
           </a>
           <a
-            href="/resume.pdf"
+            href="/resume"
             target="_blank"
             className="border-2 border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-600 px-8 py-3 rounded-lg text-lg font-medium transition-colors duration-200"
           >

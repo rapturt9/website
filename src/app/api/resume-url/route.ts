@@ -11,20 +11,20 @@ export async function GET() {
       return NextResponse.json(
         {
           error: "BLOB_READ_WRITE_TOKEN environment variable is not set",
-          fallbackUrl: "/resume.pdf",
+          fallbackUrl: "/resume",
         },
         { status: 500 }
       );
     }
 
-    // List all blobs and find the resume.pdf with explicit token
+    // List all blobs and find the resume with explicit token
     const { blobs } = await list({
       token: blobToken,
     });
 
-    // Find the most recent resume.pdf blob
+    // Find the most recent resume blob
     const resumeBlob = blobs
-      .filter((blob) => blob.pathname === "resume.pdf")
+      .filter((blob) => blob.pathname === "resume")
       .sort(
         (a, b) =>
           new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime()
@@ -34,7 +34,7 @@ export async function GET() {
       return NextResponse.json(
         {
           error: "Resume not found in blob storage",
-          fallbackUrl: "/resume.pdf", // Fallback to static file if exists
+          fallbackUrl: "/resume", // Fallback to static file if exists
         },
         { status: 404 }
       );
@@ -50,7 +50,7 @@ export async function GET() {
     return NextResponse.json(
       {
         error: "Failed to fetch resume URL",
-        fallbackUrl: "/resume.pdf", // Fallback to static file
+        fallbackUrl: "/resume", // Fallback to static file
       },
       { status: 500 }
     );

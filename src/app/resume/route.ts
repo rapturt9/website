@@ -16,14 +16,14 @@ export async function GET(request: Request) {
       );
     }
 
-    // List all blobs and find the resume.pdf
+    // List all blobs and find the resume
     const { blobs } = await list({
       token: blobToken,
     });
 
-    // Find the most recent resume.pdf blob
+    // Find the most recent resume blob
     const resumeBlob = blobs
-      .filter((blob) => blob.pathname === "resume.pdf")
+      .filter((blob) => blob.pathname === "resume")
       .sort(
         (a, b) =>
           new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime()
@@ -72,7 +72,7 @@ export async function GET(request: Request) {
     return new NextResponse(pdfBuffer, {
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": "inline; filename=resume.pdf",
+        "Content-Disposition": "inline; filename=resume",
         "Cache-Control": "public, max-age=300, must-revalidate", // Cache for 5 minutes but revalidate
         ETag: etag,
         "Last-Modified": new Date(resumeBlob.uploadedAt).toUTCString(),

@@ -119,7 +119,7 @@ export function Resume() {
             </a>
             <a
               href={resumeUrl}
-              download="resume.pdf"
+              download="resume"
               className="border-2 border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-600 px-8 py-3 rounded-lg text-lg font-medium transition-colors duration-200 flex items-center"
             >
               <Download className="mr-2" size={20} />
