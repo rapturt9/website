@@ -20,7 +20,6 @@
     "lucide-react": "^0.294.0",
     "next": "15.1.11",
     "node-cron": "^3.0.0",
-    "puppeteer": "^21.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
