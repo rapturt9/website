@@ -58,7 +58,7 @@ const publications: Publication[] = [
     type: "post",
     platform: "LessWrong",
     url: "https://www.lesswrong.com/posts/WuKDzJxtiqcA9ZZRH/attack-selection-in-agentic-ai-control-evals-can-decrease",
-    featured: true,
+    featured: false,
   },
   {
     title: "Forecast Labs",
