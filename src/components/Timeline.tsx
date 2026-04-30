@@ -30,6 +30,37 @@ interface Publication {
 
 const publications: Publication[] = [
   {
+    title:
+      "LinuxArena: A Control Setting for AI Agents in Live Production Software Environments",
+    description:
+      "Introduces LinuxArena, an evaluation framework with 20 environments and 1,671 legitimate tasks plus 184 sabotage tasks for evaluating AI agent control in realistic production settings. Includes LaStraj, a dataset of human-crafted attack trajectories that outperform model-generated alternatives.",
+    date: "2026-04-21",
+    type: "paper",
+    platform: "arXiv",
+    url: "https://arxiv.org/abs/2604.15384",
+    featured: true,
+  },
+  {
+    title: "An Independent Safety Evaluation of Kimi K2.5",
+    description:
+      "Preliminary safety assessment of the open-weight model Kimi K2.5 across CBRNE misuse, cybersecurity risk, misalignment, political censorship, bias, and harmlessness. Finds dual-use capabilities comparable to GPT 5.2 and Claude Opus 4.5 but with reduced refusals on harmful requests.",
+    date: "2026-04-04",
+    type: "paper",
+    platform: "arXiv",
+    url: "https://arxiv.org/abs/2604.03121",
+    featured: true,
+  },
+  {
+    title: "Attack Selection In Agentic AI Control Evals Can Decrease Safety",
+    description:
+      "Investigates how strategically-timed attacks undermine AI safety in control evaluations. Introduces a decomposition framework separating attack selection into Start and Stop policies, showing that selective attackers can halve safety margins compared to indiscriminate assumptions.",
+    date: "2026-04-20",
+    type: "post",
+    platform: "LessWrong",
+    url: "https://www.lesswrong.com/posts/WuKDzJxtiqcA9ZZRH/attack-selection-in-agentic-ai-control-evals-can-decrease",
+    featured: true,
+  },
+  {
     title: "Forecast Labs",
     description:
       "AI Forecasting bot that rivals human superforecasters, used for better decision-making for reducing AI Risk. Building advanced forecasting systems to improve strategic decision-making in AI safety.",
