@@ -80,7 +80,6 @@ const publications: Publication[] = [
     url: "https://www.forecastlabs.org/",
     featured: false,
     role: "Founder",
-    status: "Active",
   },
   {
     title: "AI Safety Global Society - Arena Curriculum Mentor",
