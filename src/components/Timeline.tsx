@@ -30,6 +30,16 @@ interface Publication {
 
 const publications: Publication[] = [
   {
+    title: "The Agent Misalignment Dataset",
+    description:
+      "An open, annotated corpus of agent behavior in realistic workplace tasks: 1,050 trajectories across 7 models, 25 tasks, and 3 elicitation modes, each labeled for misalignment by an LLM judge panel. Useful for training misalignment classifiers and stress-testing monitors. Funded by Coefficient Giving.",
+    date: "2026-06-11",
+    type: "paper",
+    platform: "Other",
+    url: "https://rapturt9.github.io/agentmisalignmentdataset/",
+    featured: false,
+  },
+  {
     title:
       "LinuxArena: A Control Setting for AI Agents in Live Production Software Environments",
     description:
@@ -92,17 +102,6 @@ const publications: Publication[] = [
     type: "paper",
     platform: "arXiv",
     url: "https://arXiv.org/abs/2506.03056",
-    featured: false,
-  },
-  {
-    title:
-      "A Safety Case for a Deployed LLM: Corrigibility as a Singular Target",
-    description:
-      "Safety case for deploying a highly capable LLM for real-world action under the guidance of a trusted principal. The system is trained according to the Corrigibility-as-Singular-Target (CAST) strategy.",
-    date: "2025-06-24",
-    type: "paper",
-    platform: "arXiv",
-    url: "https://openreview.net/pdf?id=mhEnJa9pNk",
     featured: false,
   },
   {
