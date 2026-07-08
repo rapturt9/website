@@ -17,7 +17,9 @@ interface Publication {
     | "Substack"
     | "Other"
     | "Forecast Labs"
-    | "AI Safety Global Society";
+    | "AI Safety Global Society"
+    | "AgentSteer"
+    | "GitHub";
   url: string;
   featured: boolean;
   conference?: Array<{
@@ -30,6 +32,88 @@ interface Publication {
 
 const publications: Publication[] = [
   {
+    title:
+      "LinuxArena: A Control Setting for AI Agents in Live Production Software Environments",
+    description:
+      "A control benchmark with 20 production environments, 1,671 legitimate tasks, and 184 sabotage tasks for evaluating whether AI agents can be safely monitored in realistic software settings. Used for risk evaluations at OpenAI, Anthropic, and the EU AI Office.",
+    date: "2026-04-21",
+    type: "paper",
+    platform: "arXiv",
+    url: "https://arxiv.org/abs/2604.15384",
+    featured: true,
+    status: "Ongoing",
+    conference: [
+      {
+        name: "ICML 2026, Agents in the Wild Workshop",
+        presentationType: "Oral",
+      },
+    ],
+  },
+  {
+    title: "AgentSteer",
+    description:
+      "AI-control startup building runtime monitors for AI agents. Had users at Coefficient Giving and Redwood Research. Key finding: a prompted ~20B open-source model gave the best cost/latency tradeoff as a safeguard, catching prompt injections well while staying weaker against more sophisticated attacks.",
+    date: "2026-03-15",
+    type: "project",
+    platform: "AgentSteer",
+    url: "https://www.agentsteer.ai/research/monitor-evaluation",
+    featured: true,
+    role: "Founder",
+  },
+  {
+    title:
+      "Attack Selection in Agentic AI Control Evaluations Meaningfully Decreases Safety",
+    description:
+      "Shows that letting the attacker choose when to strike substantially lowers the safety measured by AI control evaluations, implying current assessments may be overly optimistic. Introduces a Start/Stop decomposition of attack-selection policies.",
+    date: "2026-06-15",
+    type: "paper",
+    platform: "arXiv",
+    url: "https://arxiv.org/abs/2606.06529",
+    featured: true,
+    conference: [
+      {
+        name: "ICML 2026, FAGEN Workshop",
+        presentationType: "Poster",
+      },
+    ],
+  },
+  {
+    title: "Automated Red-Teaming & Control-Research Pipeline",
+    description:
+      "Automated red-teaming and control-research tooling built during the Redwood Research fellowship. Turns raw agent transcripts into structured trajectories, mines failure modes where sabotage evades the monitor, generates adversarial attacks, and stress-tests monitors against them. Integrated with Control Tower.",
+    date: "2026-06-01",
+    type: "project",
+    platform: "GitHub",
+    url: "https://github.com/linuxarena/control-tower-plugins/tree/main/plugins/control-research",
+    featured: true,
+  },
+  {
+    title: "Evaluating LLM Agent Adherence to Hierarchical Safety Principles",
+    description:
+      "A lightweight gridworld benchmark for whether an LLM agent upholds a high-level safety principle when faced with conflicting lower-level instructions.",
+    date: "2025-06-03",
+    type: "paper",
+    platform: "arXiv",
+    url: "https://rapturt9.github.io/SafetyAdherenceBenchmark/",
+    featured: true,
+    conference: [
+      {
+        name: "ICML 2025, Technical AI Governance Workshop",
+        presentationType: "Oral",
+      },
+    ],
+  },
+  {
+    title: "An Independent Safety Evaluation of Kimi K2.5",
+    description:
+      "Pre-deployment safety assessment of the open-weight model Kimi K2.5 across CBRNE misuse, cybersecurity risk, misalignment, political censorship, bias, and harmlessness. Finds dual-use capabilities comparable to GPT 5.2 and Claude Opus 4.5 but with reduced refusals on harmful requests.",
+    date: "2026-04-04",
+    type: "paper",
+    platform: "arXiv",
+    url: "https://arxiv.org/abs/2604.03121",
+    featured: true,
+  },
+  {
     title: "The Agent Misalignment Dataset",
     description:
       "An open, annotated corpus of agent behavior in realistic workplace tasks: 1,050 trajectories across 7 models, 25 tasks, and 3 elicitation modes, each labeled for misalignment by an LLM judge panel. Useful for training misalignment classifiers and stress-testing monitors. Funded by Coefficient Giving.",
@@ -41,39 +125,81 @@ const publications: Publication[] = [
   },
   {
     title:
-      "LinuxArena: A Control Setting for AI Agents in Live Production Software Environments",
+      "Think Fast: Estimating No-CoT Task-Completion Time Horizons of Frontier AI Models",
     description:
-      "Introduces LinuxArena, an evaluation framework with 20 environments and 1,671 legitimate tasks plus 184 sabotage tasks for evaluating AI agent control in realistic production settings. Includes LaStraj, a dataset of human-crafted attack trajectories that outperform model-generated alternatives.",
-    date: "2026-04-21",
+      "Estimates the task-completion time horizons of frontier models when they cannot use explicit chain-of-thought. Finds no-CoT performance roughly doubling each year, projecting large implicit-reasoning gains through 2030. Large multi-author collaboration.",
+    date: "2026-06-20",
     type: "paper",
     platform: "arXiv",
-    url: "https://arxiv.org/abs/2604.15384",
-    featured: true,
+    url: "https://arxiv.org/abs/2606.07157",
+    featured: false,
   },
   {
-    title: "An Independent Safety Evaluation of Kimi K2.5",
+    title: "Attack Selection in Agentic AI Control Evals Can Decrease Safety",
     description:
-      "Preliminary safety assessment of the open-weight model Kimi K2.5 across CBRNE misuse, cybersecurity risk, misalignment, political censorship, bias, and harmlessness. Finds dual-use capabilities comparable to GPT 5.2 and Claude Opus 4.5 but with reduced refusals on harmful requests.",
-    date: "2026-04-04",
-    type: "paper",
-    platform: "arXiv",
-    url: "https://arxiv.org/abs/2604.03121",
-    featured: true,
-  },
-  {
-    title: "Attack Selection In Agentic AI Control Evals Can Decrease Safety",
-    description:
-      "Investigates how strategically-timed attacks undermine AI safety in control evaluations. Introduces a decomposition framework separating attack selection into Start and Stop policies, showing that selective attackers can halve safety margins compared to indiscriminate assumptions.",
-    date: "2026-04-20",
+      "LessWrong write-up of the attack-selection work: strategically-timed attacks undermine the safety measured by AI control evaluations, and a Start/Stop decomposition of attack-selection policies.",
+    date: "2026-06-15",
     type: "post",
     platform: "LessWrong",
     url: "https://www.lesswrong.com/posts/WuKDzJxtiqcA9ZZRH/attack-selection-in-agentic-ai-control-evals-can-decrease",
     featured: false,
   },
   {
+    title: "AI Control Methods Literature Review",
+    description:
+      "A review of AI control methods, focusing on their strengths, weaknesses, and the top research for each method.",
+    date: "2025-04-18",
+    type: "article",
+    platform: "LessWrong",
+    url: "https://www.lesswrong.com/posts/3PBvKHB2EmCujet3j/ai-control-methods-literature-review",
+    featured: false,
+  },
+  {
+    title: "MAEBE: Multi-Agent Emergent Behavior Framework",
+    description:
+      "A framework for analyzing emergent behaviors in multi-agent systems, focusing on safety and alignment in complex AI environments.",
+    date: "2025-06-03",
+    type: "paper",
+    platform: "arXiv",
+    url: "https://arxiv.org/abs/2506.03053",
+    featured: false,
+    conference: [
+      {
+        name: "ICML 2025, Multi-Agent Systems Workshop",
+        presentationType: "Poster",
+      },
+      {
+        name: "HICSS 2026, Trustworthy AI Track",
+        presentationType: "Poster",
+      },
+    ],
+  },
+  {
+    title:
+      "Corrigibility as a Singular Target: A Vision for Inherently Reliable Foundation Models",
+    description:
+      "Vision paper for enhancing corrigibility in AI systems to reduce loss-of-control scenarios, outlining empirical approaches for training corrigible foundation models.",
+    date: "2025-06-03",
+    type: "paper",
+    platform: "arXiv",
+    url: "https://arxiv.org/abs/2506.03056",
+    featured: false,
+  },
+  {
+    title:
+      "Model-Based Soft Maximization of Suitable Metrics of Long-Term Human Power",
+    description:
+      "Promoting both safety and wellbeing by forcing AI agents to explicitly empower humans and to manage the power balance between humans and AI agents in a desirable way.",
+    date: "2025-07-24",
+    type: "paper",
+    platform: "arXiv",
+    url: "https://arxiv.org/abs/2508.00159",
+    featured: false,
+  },
+  {
     title: "Forecast Labs",
     description:
-      "AI Forecasting bot that rivals human superforecasters, used for better decision-making for reducing AI Risk. Building advanced forecasting systems to improve strategic decision-making in AI safety.",
+      "AI forecasting bot that rivals human superforecasters, used for better decision-making to reduce AI risk. Building advanced forecasting systems to improve strategic decision-making in AI safety.",
     date: "2025-06-18",
     type: "project",
     platform: "Forecast Labs",
@@ -84,91 +210,13 @@ const publications: Publication[] = [
   {
     title: "AI Safety Global Society - Arena Curriculum Mentor",
     description:
-      "Teaching the Arena curriculum to help train the next generation of AI safety researchers and practitioners through hands-on technical education.",
-    date: "2025-04-015",
+      "Teaching the ARENA curriculum to help train the next generation of AI safety researchers and practitioners through hands-on technical education.",
+    date: "2025-04-15",
     type: "project",
     platform: "AI Safety Global Society",
     url: "https://www.aisafety.group/about/team",
     featured: false,
     role: "Mentor",
-  },
-  {
-    title:
-      "Corrigibility as a Singular Target: A Vision for Inherently Reliable Foundation Models",
-    description:
-      "Vision Paper for enhancing Corrigibility in AI systems to reduce loss of control scenarios, outlining empirical approaches for training corrigible foundation models.",
-    date: "2025-06-03",
-    type: "paper",
-    platform: "arXiv",
-    url: "https://arXiv.org/abs/2506.03056",
-    featured: false,
-  },
-  {
-    title:
-      "Model-Based Soft Maximization of Suitable Metrics of Long-Term Human Power",
-    description:
-      "Promoting both safety and wellbeing by forcing AI agents explicitly to empower humans and to manage the power balance between humans and AI agents in a desirable way.",
-    date: "2025-07-24",
-    type: "paper",
-    platform: "arXiv",
-    url: "https://arxiv.org/abs/2508.00159",
-    featured: false,
-  },
-  {
-    title: "MAEBE: Multi-Agent Emergent Behavior Framework",
-    description:
-      "Developed a framework for analyzing emergent behaviors in multi-agent systems, focusing on safety and alignment in complex AI environments.",
-    date: "2025-06-03",
-    type: "paper",
-    platform: "arXiv",
-    url: "https://arXiv.org/abs/2506.03053",
-    featured: true,
-    conference: [
-      {
-        name: "ICML 2025, Multi-Agent Systems workshop",
-        presentationType: "Poster",
-      },
-      {
-        name: "HICSS 2026, Trustworthy AI Track",
-        presentationType: "Poster",
-      },
-    ],
-  },
-  {
-    title: "Evaluating LLM Agent Adherence to Hierarchical Safety Principles",
-    description:
-      "A Lightweight Benchmark using gridworlds for evaluating an LLM agent's ability to uphold a high level safety principle when faced with conflicting lower-level instructions.",
-    date: "2025-06-03",
-    type: "paper",
-    platform: "arXiv",
-    url: "https://rapturt9.github.io/SafetyAdherenceBenchmark/",
-    featured: true,
-    conference: [
-      {
-        name: "ICML 2025, Technical AI Governance workshop",
-        presentationType: "Oral",
-      },
-    ],
-  },
-  {
-    title: "Why I Shifted from Building AI Agents to Making AI Safer",
-    description:
-      "Leaving behind the startup grind at Sitewiz to confront the existential risks of AI and help steer it toward a future that benefits humanity.",
-    date: "2025-06-01",
-    type: "post",
-    platform: "Substack",
-    url: "https://substack.com/home/post/p-165220082",
-    featured: true,
-  },
-  {
-    title: "AI Control Methods Literature Review",
-    description:
-      "A comprehensive review of AI control methods, focusing on their strengths, weaknesses, and top research for the method",
-    date: "2025-04-18",
-    type: "article",
-    platform: "LessWrong",
-    url: "https://www.lesswrong.com/posts/3PBvKHB2EmCujet3j/ai-control-methods-literature-review",
-    featured: false,
   },
   {
     title: "AI-Powered Outrage Monitor for Animal Advocacy",
@@ -294,6 +342,10 @@ function TimelineWithParams() {
         return "bg-purple-100 text-purple-800";
       case "AI Safety Global Society":
         return "bg-indigo-100 text-indigo-800";
+      case "AgentSteer":
+        return "bg-teal-100 text-teal-800";
+      case "GitHub":
+        return "bg-gray-200 text-gray-800";
       default:
         return "bg-gray-100 text-gray-800";
     }

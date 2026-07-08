@@ -12,8 +12,8 @@ export function Contact() {
             Get In Touch
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl md:mx-auto">
-            Interested in AI safety research, collaboration opportunities, or
-            have questions? Let&apos;s connect.
+            Open to full-time roles in AI control and monitoring, research
+            collaborations, or a quick chat. Let&apos;s connect.
           </p>
         </div>
 
@@ -25,8 +25,8 @@ export function Contact() {
                 Let&apos;s Connect
               </h3>
               <p className="text-gray-600 mt-[-40px] md:mt-[5px] text-lg leading-relaxed mb-8">
-                Always open to discussing AI safety research, autonomous agents,
-                and collaborative projects in alignment and robustness.
+                Always open to discussing AI control and monitoring, red-teaming
+                autonomous agents, and building safeguards for frontier systems.
               </p>
             </div>
 
