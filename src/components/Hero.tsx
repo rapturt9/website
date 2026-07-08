@@ -30,9 +30,10 @@ export function Hero() {
             co-authored{" "}
             <span className="font-semibold text-gray-700">LinuxArena</span>, a
             control benchmark now used for risk evaluations at OpenAI, Anthropic,
-            and the EU AI Office. Earlier I founded a VC-backed AI startup, which
-            grounded this work in the real risks of deploying autonomous agents.
-            I hold a B.S. in Artificial Intelligence from Carnegie Mellon.
+            and the EU AI Office. Earlier I founded and exited an AI startup,
+            which grounded this work in the real risks of deploying autonomous
+            agents. I hold a B.S. in Artificial Intelligence from Carnegie
+            Mellon.
           </p>
         </div>
 

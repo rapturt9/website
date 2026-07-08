@@ -178,12 +178,13 @@ const publications: Publication[] = [
     title:
       "Corrigibility as a Singular Target: A Vision for Inherently Reliable Foundation Models",
     description:
-      "Vision paper for enhancing corrigibility in AI systems to reduce loss-of-control scenarios, outlining empirical approaches for training corrigible foundation models.",
+      "First-author vision paper, with Max Harms (MIRI), for making corrigibility the single training target of a foundation model to reduce loss-of-control scenarios, with concrete empirical approaches for training and measuring it.",
     date: "2025-06-03",
     type: "paper",
     platform: "arXiv",
     url: "https://arxiv.org/abs/2506.03056",
-    featured: false,
+    featured: true,
+    role: "First Author",
   },
   {
     title:
