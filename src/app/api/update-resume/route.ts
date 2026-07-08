@@ -1,8 +1,14 @@
 import { NextResponse } from "next/server";
 import { put } from "@vercel/blob";
+import { readFile } from "fs/promises";
+import path from "path";
 
-const GOOGLE_DOC_ID = "1c2gXIFkuPz5HlN5NWuTrSx8-jCarH17e7IpN_EcGyqo";
-const GOOGLE_DOC_URL = `https://docs.google.com/document/d/${GOOGLE_DOC_ID}/export?format=pdf`;
+// Source of truth is a static PDF committed to the repo (public/resume-source.pdf),
+// built and verified to be exactly 1 page via a local LibreOffice render pipeline.
+// Previously this fetched a Google Docs export, which used Google's default
+// formatting (wide margins, generous spacing) and rendered as 3 pages — switched
+// away from that entirely rather than fight Google Docs formatting to match.
+const RESUME_SOURCE_PATH = path.join(process.cwd(), "public", "resume-source.pdf");
 
 async function updateResume(isManual: boolean = false) {
   try {
@@ -22,31 +28,15 @@ async function updateResume(isManual: boolean = false) {
       );
     }
 
-    console.log("📄 Fetching latest resume from Google Doc...");
+    console.log("📄 Reading resume from public/resume-source.pdf...");
 
-    // Fetch the PDF directly from Google Docs
-    const response = await fetch(GOOGLE_DOC_URL, {
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch resume: ${response.status} ${response.statusText}`
-      );
-    }
-
-    const pdfBuffer = await response.arrayBuffer();
+    const pdfBuffer = await readFile(RESUME_SOURCE_PATH);
     console.log(`📊 PDF size: ${pdfBuffer.byteLength} bytes`);
 
     console.log("☁️ Uploading to Vercel Blob...");
 
-    console.log("Blob token used for upload:", blobToken);
-
     // Upload the PDF to Vercel Blob storage with explicit token
-    const blob = await put("resume", Buffer.from(pdfBuffer), {
+    const blob = await put("resume", pdfBuffer, {
       access: "public",
       contentType: "application/pdf",
       token: blobToken, // Explicitly pass the token
@@ -56,14 +46,12 @@ async function updateResume(isManual: boolean = false) {
     console.log("✅ Resume updated successfully in Vercel Blob!");
     console.log("🔗 Blob URL:", blob.url);
 
-    console.log("✅ Resume updated successfully in Vercel Blob!");
-
     return {
       message: `Resume updated successfully via ${
         isManual ? "manual trigger" : "cron job"
       }`,
       timestamp: new Date().toISOString(),
-      docId: GOOGLE_DOC_ID,
+      source: "public/resume-source.pdf",
       type: isManual ? "manual" : "automated",
       size: pdfBuffer.byteLength,
       blobUrl: blob.url,
