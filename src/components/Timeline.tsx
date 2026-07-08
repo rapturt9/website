@@ -35,7 +35,7 @@ const publications: Publication[] = [
     title:
       "LinuxArena: A Control Setting for AI Agents in Live Production Software Environments",
     description:
-      "A control benchmark with 20 production environments, 1,671 legitimate tasks, and 184 sabotage tasks for evaluating whether AI agents can be safely monitored in realistic software settings. Used for risk evaluations at OpenAI, Anthropic, and the EU AI Office.",
+      "Used for risk evaluations at OpenAI, Anthropic, and the EU AI Office. A control arena of 20 environments, 1,671 legitimate software-engineering tasks, and 184 sabotage tasks for testing whether AI agents can be safely monitored in production. Also releases LaStraj, human-crafted attack trajectories that evade monitors better than model-generated ones.",
     date: "2026-04-21",
     type: "paper",
     platform: "arXiv",
@@ -78,9 +78,9 @@ const publications: Publication[] = [
     ],
   },
   {
-    title: "Automated Red-Teaming & Control-Research Pipeline",
+    title: "Automated Control Research Pipeline",
     description:
-      "Automated red-teaming and control-research tooling built during the Redwood Research fellowship. Turns raw agent transcripts into structured trajectories, mines failure modes where sabotage evades the monitor, generates adversarial attacks, and stress-tests monitors against them. Integrated with Control Tower.",
+      "Automated control-research system built during the Redwood Research fellowship, used by Redwood Research: automates both red-teaming (generating adversarial attacks) and blue-teaming (improving monitors) in an iterative loop. Turns raw agent transcripts into structured trajectories, mines failure modes where sabotage evades the monitor, and stress-tests monitors against generated attacks. Integrated with Control Tower.",
     date: "2026-06-01",
     type: "project",
     platform: "GitHub",
@@ -106,7 +106,7 @@ const publications: Publication[] = [
   {
     title: "An Independent Safety Evaluation of Kimi K2.5",
     description:
-      "Pre-deployment safety assessment of the open-weight model Kimi K2.5 across CBRNE misuse, cybersecurity risk, misalignment, political censorship, bias, and harmlessness. Finds dual-use capabilities comparable to GPT 5.2 and Claude Opus 4.5 but with reduced refusals on harmful requests.",
+      "Pre-deployment safety assessment of the open-weight model Kimi K2.5 across CBRNE misuse, cybersecurity risk, misalignment, political censorship, bias, and harmlessness. Finds dual-use capabilities similar to GPT 5.2 and Claude Opus 4.5, but with significantly fewer refusals on CBRNE-related requests.",
     date: "2026-04-04",
     type: "paper",
     platform: "arXiv",
@@ -132,7 +132,7 @@ const publications: Publication[] = [
     type: "paper",
     platform: "arXiv",
     url: "https://arxiv.org/abs/2606.07157",
-    featured: false,
+    featured: true,
   },
   {
     title: "Attack Selection in Agentic AI Control Evals Can Decrease Safety",
@@ -200,7 +200,7 @@ const publications: Publication[] = [
   {
     title: "Forecast Labs",
     description:
-      "AI forecasting bot that rivals human superforecasters, used for better decision-making to reduce AI risk. Building advanced forecasting systems to improve strategic decision-making in AI safety.",
+      "AI forecasting agent for AI-safety-relevant decision-making, aiming to match the accuracy of top human superforecasters on real-world prediction markets.",
     date: "2025-06-18",
     type: "project",
     platform: "Forecast Labs",
@@ -209,7 +209,7 @@ const publications: Publication[] = [
     role: "Founder",
   },
   {
-    title: "AI Safety Global Society - Arena Curriculum Mentor",
+    title: "AI Safety Global Society - ARENA Curriculum Mentor",
     description:
       "Teaching the ARENA curriculum to help train the next generation of AI safety researchers and practitioners through hands-on technical education.",
     date: "2025-04-15",

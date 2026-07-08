@@ -12,8 +12,7 @@ export function Contact() {
             Get In Touch
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl md:mx-auto">
-            Open to full-time roles in AI control and monitoring, research
-            collaborations, or a quick chat. Let&apos;s connect.
+            Open to research collaborations or a quick chat. Let&apos;s connect.
           </p>
         </div>
 

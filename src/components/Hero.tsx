@@ -6,12 +6,6 @@ export function Hero() {
     >
       <div className="max-w-6xl mx-auto text-left sm:text-center">
         <div className="mb-12">
-          <div className="mb-6 flex sm:justify-center">
-            <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-4 py-1.5 text-sm font-medium text-emerald-800">
-              <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
-              Open to full-time roles in AI control &amp; monitoring
-            </span>
-          </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-8 leading-tight">
             Hey, I&apos;m Ram
           </h1>
@@ -29,11 +23,10 @@ export function Hero() {
             evaluations, monitors, and automated red-teaming pipelines. I
             co-authored{" "}
             <span className="font-semibold text-gray-700">LinuxArena</span>, a
-            control benchmark now used for risk evaluations at OpenAI, Anthropic,
+            control arena now used for risk evaluations at OpenAI, Anthropic,
             and the EU AI Office. Earlier I founded and exited an AI startup,
-            which grounded this work in the real risks of deploying autonomous
-            agents. I hold a B.S. in Artificial Intelligence from Carnegie
-            Mellon.
+            then realized AI risk is a huge issue. I hold a B.S. in Artificial
+            Intelligence from Carnegie Mellon.
           </p>
         </div>
 
