@@ -44,7 +44,7 @@ const publications: Publication[] = [
     status: "Ongoing",
     conference: [
       {
-        name: "ICML 2026, Agents in the Wild Workshop, Best Paper Award",
+        name: "Best Paper Award, ICML 2026, Agents in the Wild Workshop",
         presentationType: "Oral",
       },
     ],
