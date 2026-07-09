@@ -21,10 +21,11 @@ export function Hero() {
             Redwood Research, where I design and red-team the safeguards that
             catch a misaligned AI agent before it causes harm, through control
             evaluations, monitors, and automated red-teaming pipelines. I
-            co-authored{" "}
+            was second author of{" "}
             <span className="font-semibold text-gray-700">LinuxArena</span>, a
-            control arena now used for risk evaluations at OpenAI, Anthropic,
-            and the EU AI Office. Earlier I founded and exited an AI startup,
+            control arena I ran all the evaluations for, now used for risk
+            evaluations at OpenAI, Anthropic, and the EU AI Office. Earlier I
+            founded and exited an AI startup,
             then realized AI risk is a huge issue. I hold a B.S. in Artificial
             Intelligence from Carnegie Mellon.
           </p>

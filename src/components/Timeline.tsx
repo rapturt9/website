@@ -35,13 +35,14 @@ const publications: Publication[] = [
     title:
       "LinuxArena: A Control Setting for AI Agents in Live Production Software Environments",
     description:
-      "Used for risk evaluations at OpenAI, Anthropic, and the EU AI Office. A control arena of 20 environments, 1,671 legitimate software-engineering tasks, and 184 sabotage tasks for testing whether AI agents can be safely monitored in production. Also releases LaStraj, human-crafted attack trajectories that evade monitors better than model-generated ones.",
+      "Used for risk evaluations at OpenAI, Anthropic, and the EU AI Office. Second author; ran all the evaluations. A control arena of 20 environments, 1,671 legitimate software-engineering tasks, and 184 sabotage tasks for testing whether AI agents can be safely monitored in production. Also releases LaStraj, human-crafted attack trajectories that increase evasion rate from 1% (model-generated attacks) to 13% against an Opus 4.6 monitor.",
     date: "2026-04-21",
     type: "paper",
     platform: "arXiv",
     url: "https://arxiv.org/abs/2604.15384",
     featured: true,
     status: "Ongoing",
+    role: "Second Author",
     conference: [
       {
         name: "Best Paper Award, ICML 2026, Agents in the Wild Workshop",
@@ -157,17 +158,13 @@ const publications: Publication[] = [
   {
     title: "MAEBE: Multi-Agent Emergent Behavior Framework",
     description:
-      "A framework for analyzing emergent behaviors in multi-agent systems, focusing on safety and alignment in complex AI environments.",
+      "Equal-contribution author. A framework for analyzing emergent behaviors in multi-agent systems, focusing on safety and alignment in complex AI environments.",
     date: "2025-06-03",
     type: "paper",
     platform: "arXiv",
     url: "https://arxiv.org/abs/2506.03053",
     featured: false,
     conference: [
-      {
-        name: "ICML 2025, Multi-Agent Systems Workshop",
-        presentationType: "Poster",
-      },
       {
         name: "HICSS 2026, Trustworthy AI Track",
         presentationType: "Poster",
@@ -190,12 +187,19 @@ const publications: Publication[] = [
     title:
       "Model-Based Soft Maximization of Suitable Metrics of Long-Term Human Power",
     description:
-      "Promoting both safety and wellbeing by forcing AI agents to explicitly empower humans and to manage the power balance between humans and AI agents in a desirable way.",
+      "Second author. Promoting both safety and wellbeing by forcing AI agents to explicitly empower humans and to manage the power balance between humans and AI agents in a desirable way.",
     date: "2025-07-24",
     type: "paper",
     platform: "arXiv",
     url: "https://arxiv.org/abs/2508.00159",
     featured: false,
+    role: "Second Author",
+    conference: [
+      {
+        name: "1st IJCAI Workshop on Safe Physical AI (SPAI), IJCAI-ECAI 2026",
+        presentationType: "Workshop",
+      },
+    ],
   },
   {
     title: "Forecast Labs",
