@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { list } from "@vercel/blob";
 
+export const dynamic = "force-dynamic";
+
 // GET endpoint to serve the resume PDF as a proxy
 export async function GET(request: Request) {
   try {
@@ -54,8 +56,12 @@ export async function GET(request: Request) {
       });
     }
 
-    // Fetch the PDF from the blob URL
-    const pdfResponse = await fetch(resumeBlob.url);
+    // Fetch the PDF from the blob URL. cache: "no-store" is required here:
+    // Next.js caches fetch() responses indefinitely by default, and the blob
+    // URL is a fixed pathname reused on every update (not versioned), so
+    // without this the route kept serving the first-ever fetched PDF body
+    // forever regardless of how many times the blob itself was overwritten.
+    const pdfResponse = await fetch(resumeBlob.url, { cache: "no-store" });
 
     if (!pdfResponse.ok) {
       return NextResponse.json(
