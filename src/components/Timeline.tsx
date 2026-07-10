@@ -35,7 +35,7 @@ const publications: Publication[] = [
     title:
       "LinuxArena: A Control Setting for AI Agents in Live Production Software Environments",
     description:
-      "Used for risk evaluations at OpenAI, Anthropic, and the EU AI Office. Second author; ran all the evaluations. A control arena of 20 environments, 1,671 legitimate software-engineering tasks, and 184 sabotage tasks for testing whether AI agents can be safely monitored in production. Also releases LaStraj, human-crafted attack trajectories that increase evasion rate from 1% (model-generated attacks) to 13% against an Opus 4.6 monitor.",
+      "Used for risk evaluations at Anthropic and the EU AI Office. Second author; ran all the evaluations. A control arena of 20 environments, 1,671 legitimate software-engineering tasks, and 184 sabotage tasks for testing whether AI agents can be safely monitored in production. Also releases LaStraj, human-crafted attack trajectories that increase evasion rate from 1% (model-generated attacks) to 13% against an Opus 4.6 monitor.",
     date: "2026-04-21",
     type: "paper",
     platform: "arXiv",
